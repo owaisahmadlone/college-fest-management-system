@@ -1,0 +1,111 @@
+{% extends 'base.html'%}
+
+{% block head %}
+<title>Home</title>
+{% endblock %}
+
+{% block body %}
+<div class="home-navbar">
+    <h1 class="nav-logo">Fest 2024</h1>
+    <ul class="nav-el">
+        <a href="#welcome">
+            <li>Home</li>
+        </a>
+        <a href="#events">
+            <li>Events</li>
+        </a>
+        <a href="#about">
+            <li>About</li>
+        </a>
+    </ul>
+</div>
+<div id="welcome" class="home-welcome">
+    <div class="welcome-text">
+        <h1>IIT Kharagpur Fest Website</h1>
+        <p>Welcome to the home page of our Website!</p>
+    </div>
+    <div class="home-login">
+        <div class="home-buttons">
+            <a href="{{ url_for('login') }}">
+                <p>Login</p>
+            </a>
+            <a href="{{ url_for('register') }}">
+                <p>Register</p>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div id="events" class="home-events">
+    <h1>Events</h1>
+    {% for event in events %}
+    <div class="event-card">
+        <img class="event-img" src="{{ url_for('static', filename='images/tech_fest.jpg') }}" alt="tech fest">
+        <div class="event-head">
+            <h1 class="event-name">{{event[1]}}</h1>
+            <p class="event-venue">{{event[2]}}</p>
+        </div>
+        <p class="event-desc">{{ ' '.join(event[3].split()[:3]) }}<span id="three-dots-{{ event[0] }}"
+                class="three-dots">...</span>
+            <span id="full-desc-{{ event[0] }}" class="full-desc">{{ ' '.join(event[3].split()[3:]) }}</span>
+            <button class="read-more-btn" id="read-more-btn-{{ event[0] }}"
+                onclick="changeReadMore('{{ event[0] }}')">Read More</button>
+        </p>
+
+        <div class="event-body">
+            <div id="event-timings-{{ event[0] }}" class="event-timings">
+                <p>{{event[4]}}</p>
+                <p>{{event[5]}}</p>
+            </div>
+            <div class="hr-line"></div>
+            <h2 class="event-type">{{event[6]}}</h2>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<div id="about" class="home-about">
+    <h1 class="about-head">About</h1>
+    <p class="about-body">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed eleifend ligula at nibh faucibus,
+        ac tempus libero convallis. Vivamus at quam id augue volutpat bibendum. Curabitur eget ante at purus fringilla
+        efficitur. Ut vitae risus nec dui venenatis hendrerit. Duis dapibus tristique velit, nec volutpat ex sodales
+        vel. Integer suscipit sapien a libero vestibulum, non aliquet quam consectetur. Sed nec erat eget sapien
+        sollicitudin volutpat. Quisque in odio sed lorem faucibus facilisis. Nulla facilisi. Nam ultricies lectus ac
+        vestibulum dictum. Vestibulum aliquet quam et magna dictum, vitae ultricies lorem blandit. Nullam consequat
+        neque ac est feugiat hendrerit. Fusce vitae lorem eu nisl tincidunt vestibulum eget non lectus.</p>
+</div>
+
+<div class="home-footer">
+    <h1>Contact</h1>
+    <table class="contact-body">
+        <tr>
+            <td class="contact-td">21CS10012</td>
+            <td class="contact-td">Atul Jayesh</td>
+            <td class="contact-td email">atuljayesh@kgpian.iitkgp.ac.in</td>
+        </tr>
+        <tr>
+            <td class="contact-td">21CS10014</td>
+            <td class="contact-td">Barun Parua</td>
+            <td class="contact-td email">barunparua@kgpian.iitkgp.ac.in</td>
+        </tr>
+        <tr>
+            <td class="contact-td">21CS10048</td>
+            <td class="contact-td">Owais Ahmad Lone</td>
+            <td class="contact-td email">loneowaisahmad@kgpian.iitkgp.ac.in</td>
+        </tr>
+        <tr>
+            <td class="contact-td">21CS10054</td>
+            <td class="contact-td">Ranjim Prabal Das</td>
+            <td class="contact-td email">ranjimxxii@kgpian.iitkgp.ac.in</td>
+        </tr>
+        <tr>
+            <td class="contact-td">21CS30032</td>
+            <td class="contact-td">Navaneeth Shaji</td>
+            <td class="contact-td email">navaneeth1013@kgpian.iitkgp.ac.in</td>
+        </tr>
+    </table>
+    <div class="hr-line"></div>
+    <h4>powered by HeapUnderCut 2024</h4>
+</div>
+
+{% endblock %}

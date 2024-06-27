@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+{%block head%}
+<title>Remove Participant</title>
+{%endblock%}
+{%block body%}
+{%if participants%}
+<a href="{{url_for('admin',url_encrypt=url_encrypt)}}">
+    <p class="go-back-btn">Go back</p>
+<h2>Participants</h2>
+<table style="width: 60%;">
+    <tr>
+        <th>Fest id</th>
+        <th>Name</th>
+        <th>Remove</th>
+    </tr>
+    {%for participant in participants%}
+    <tr>
+        <td>{{participant[0]}}</td>
+        <td>{{participant[1]}}</td>
+        <td><a href="{{url_for('remove_participant2',fest_id=participant[0],url_encrypt=url_encrypt)}}">Remove</a></td>
+    </tr>
+    {%endfor%}
+</table>
+{%endif%}
+{%endblock%}

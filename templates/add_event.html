@@ -1,0 +1,50 @@
+{%extends 'base.html'%}
+{%block head%}
+<title>Add Event</title>
+{%endblock%}
+{%block body%}
+<div class="register-content">
+    <div class="form-box">
+        <div class="image-box">
+            <h1 class="img-txt">Fest 2024</h1>
+            <p class="img-subtxt">Add Event</p>
+            <a href="{{url_for('admin',url_encrypt=url_encrypt)}}">
+                <p class="go-back-btn">Go back</p>
+            </a>
+        </div>
+        <div class="register-form">
+            <form action="{{url_for('add_event',url_encrypt=url_encrypt)}}" method="post">
+                <div class="form-group">
+                    <label for="event_name">Event Name</label>
+                    <input type="text" class="form-control" id="event_name" name="event_name"
+                        placeholder="Enter the event name" required>
+                </div>
+                <div class="form-group">
+                    <label for = "Event Date">Event Date</label>
+                    <input type="date" class="form-control" id="event_date" name="event_date" required>
+                </div>
+                <div class="form-group">
+                    <label for = "Event Time">Event Time</label>
+                    <input type="time" class="form-control" id="event_time" name="event_time" required>
+                </div>
+                <div class="form-group">
+                    <label for = "Event Venue">Event Venue</label>
+                    <input type="text" class="form-control" id="event_venue" name="event_venue" placeholder="Enter the event venue" required>
+                </div>
+                <div class="form-group">
+                    <label for = "Event Description">Event Description</label>
+                    <input type="text" class="form-control" id="event_description" name="event_description" placeholder="Enter the event description" required>
+                </div>
+                <div class="form-group">
+                    <label for = "Event Type">Event Type</label>
+                    <input type="text" class="form-control" id="event_type" name="event_type" placeholder="Enter the event type" required>
+                </div>
+                <button type="submit" class="submit-button">Add Event</button>
+            </form>
+        </div>
+    </div>
+</div>
+{%endblock%}
+
+
+                    

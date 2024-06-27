@@ -1,0 +1,87 @@
+{%extends 'base.html'%}
+
+{%block head%}
+<title>Admin</title>
+{%endblock%}
+
+{% block body %}
+
+<div class="dashboard">
+    <div class="tab-navigator">
+        <h1 class="dash-title">Dashboard</h1>
+        <ul class="dash-tabs">
+            <li id="logout-tab">
+                <span class="material-symbols-outlined">person_remove</span>
+                <a class="tablinks" href="{{url_for('remove_participant',url_encrypt=url_encrypt)}}">Remove Participant</a>
+            </li>
+            
+
+            <li id="logout-tab">
+                <span class="material-symbols-outlined">calendar_month</span>
+                <a class="tablinks" href="{{url_for('add_event',url_encrypt=url_encrypt)}}">Add Event</a>
+            </li>
+
+            <li id="logout-tab">
+                <span class="material-symbols-outlined">logout</span>
+                <a class="tablinks" href="{{ url_for('logout') }}">Logout</a>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content">
+        <h1 class="tab-head">Fest 2024 : Admin</h1>
+        <div class="tab-body">
+            <div id="pf-content" class="pf-content">
+                <div class="pf-col-4">
+                    <div class="small-card card all-events-bg">
+                        <div class="small-body">
+                            <h5 class="color-title small-title" >Events</h5>
+                            <p class="small-content bold">
+                                {{ events|length }}
+                                <span class="spl-font">EVENT(S)</span>
+                            </p>
+                        </div>
+                        <span class="material-symbols-outlined">calendar_month</span>
+                        <div class="event-list-actions">
+                            <p class="small-content bold spl-font">Add Organiser</p>
+                            <p class="small-content bold spl-font">Remove Organiser</p>
+                        </div>
+                    </div>
+                    <div class="event-list-card">
+                        {% for event in events %}
+                        <div class="event-list-el tri-grid">
+                            <div class="event-list-el-col1">
+                                <h4 class="e-name">{{event[0][1]}}</h4>
+                                <p class="e-venue">{{event[0][2]}}</p>
+                                <p class="e-winner">Organisers: <br>
+                                    {%for roll in event[1]%}
+                                    {{roll[0]}}<br>
+                                    {%endfor%}
+                                </p>
+                            </div>
+                            <div class="event-list-el-col2">
+                                <p class="e-date">{{event[0][3]}}</p>
+                                <p class="e-time">{{event[0][4]}}</p>
+                            </div>
+                            <div class="event-list-el-actions">
+                                <a href="{{url_for('add_organiser',event_id=event[0][0],url_encrypt=url_encrypt)}}">
+                                    <span class="material-symbols-outlined color-la">
+                                        person_add
+                                    </span>
+                                </a>
+                                <a href="{{url_for('remove_organiser',event_id=event[0][0],url_encrypt=url_encrypt)}}">
+                                    <span class="material-symbols-outlined color-da">
+                                        person_remove
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="event-list-hr"></div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

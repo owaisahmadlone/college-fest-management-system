@@ -1,0 +1,27 @@
+{%extends 'base.html'%}
+{%block head%}
+<title>Remove Organiser</title>
+{%endblock%}
+{%block body%}
+<div class="register-content">
+    <div class="form-box">
+        <div class="image-box">
+            <h1 class="img-txt">Fest 2024</h1>
+            <p class="img-subtxt">Remove Organiser</p>
+            <a href="{{url_for('admin',url_encrypt=url_encrypt)}}">
+                <p class="go-back-btn">Go back</p>
+            </a>
+        </div>
+        <div class="register-form">
+            <form action="{{url_for('remove_organiser',event_id=event_id,url_encrypt=url_encrypt)}}" method="post">
+                <div class="form-group>
+                    <label for = "Roll No">Roll No</label>
+                    <input type="text" class="form-control" id="roll" name="roll" placeholder="Enter the roll no" required>
+                </div>
+                <button type="submit" class="submit-button">Remove Organiser</button>
+            </form>
+        </div>
+    </div>
+</div>
+{%endblock%}
+<!-- Path: templates/remove_participant.html -->

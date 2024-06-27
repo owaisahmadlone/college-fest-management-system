@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Login</title>
+{% endblock %}
+
+{% block body %}
+<!-- make a form consiting of name, password ,re-enter password , college , contact number , email -->
+<div class="register-content">
+    <div class="form-box">
+        <div class="image-box">
+            <h1 class="img-txt">Fest 2024</h1>
+            <p class="img-subtxt">Login to enter the world of fun!</p>
+            {% if flag %}
+            <p class="img-subtxt mg-top-4 raise-error">Invalid Username or password !</p>
+            {% endif %}
+            <p class="img-login">Don't have an account? <a href="{{url_for('register')}}">Register</a></p>
+            <a href="{{url_for('home')}}">
+                <p class="go-back-btn">Go back</p>
+            </a>
+        </div>
+        <div class="register-form">
+            <form action="{{url_for('login')}}" method="post">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control" id="username" name="username"
+                        placeholder="Enter your username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password"
+                        placeholder="Enter your password" required>
+                </div>
+                <button type="submit" class="submit-button">Login</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

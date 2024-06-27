@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>Register</title>
+{% endblock %}
+
+{% block body %}
+<!-- make a form consiting of name, password ,re-enter password , college , contact number , email -->
+    <div class="register-content">
+        <div class="form-box">
+            <div class="image-box">
+                {% if flag == 1 %}
+                <div class="content">
+                    <h1 class="img-txt">Registration Successful !</h1>
+                    <p class="img-subtxt mg-top-4">Your username is '24FEST{{fest_id}}'</p>
+                    <a href="{{url_for('login')}}"><p class="login-button">Login</p></a>
+                </div>
+
+                {% else %}
+                <h1 class="img-txt">Fest 2024</h1>
+                <p class="img-subtxt">Register for the world's best fest!</p>
+                {% if flag == -1 %}
+                <p class="img-subtxt mg-top-4 raise-error">Re-entered password doesn't match!</p>
+                {%endif%}
+                <p class="img-login">Already registered? <a href="{{url_for('login')}}">Login</a></p>
+                {%endif%}
+                <a href="{{url_for('home')}}"><p class="go-back-btn">Go back</p></a>
+            </div>
+            <div class="register-form">
+                <form action="{{url_for('register')}}" method="post">
+                    <div class="form-group
+                    {% if errors %}
+                        has-error
+                    {% endif %}">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-group
+                    {% if errors %}
+                        has-error
+                    {% endif %}">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
+                    </div>
+                    <div class="form-group
+                    {% if errors %}
+                        has-error
+                    {% endif %}">
+                        <label for="repassword">Re-enter Password</label>
+                        <input type="password" class="form-control" id="repassword" name="repassword" placeholder="Re-enter your password" required>
+                    </div>
+                    <div class="form-group
+                    {% if errors %}
+                        has-error
+                    {% endif %}">
+                        <label for="college">College</label>
+                        <input type="text" class="form-control" id="college" name="college" placeholder="Enter your college" required>
+                    </div>
+                    <div class="form-group
+                    {% if errors %}
+                        has-error
+                    {% endif %}">
+                        <label for="contact">Contact Number</label>
+                        <input type="text" class="form-control" id="contact" name="contact" placeholder="Enter your contact number" required>
+                    </div>
+                    <div class="form-group
+                    {% if errors %}
+                        has-error
+                    {% endif %}">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                    </div>
+                    <button type="submit" class="submit-button">Register</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
